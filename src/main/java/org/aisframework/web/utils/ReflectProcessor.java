@@ -8,11 +8,13 @@ import org.aisframework.web.annotation.Controller;
 import org.aisframework.web.annotation.MapURL;
 
 import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class ReflectProcessor {
 
-    public static void parseMethod(final Class<?> clazz,String methodname) throws Exception {
+    public static void parseMethod(final Class<?> clazz,String methodname,String value) throws Exception {
         final Object obj = clazz.getConstructor(new Class[] {}).newInstance(new Object[] {});
         final Method[] methods = clazz.getDeclaredMethods();
         for (final Method method : methods) {
@@ -21,7 +23,9 @@ public class ReflectProcessor {
                 Class<?>[] parameterTypes = method.getParameterTypes();
                 //JSON.parse();
                 if (null != my) {
-                    method.invoke(obj);
+                                      //Map<String,String > map = new HashMap<String, String>();
+                   // map.put("xxx",value);
+                    method.invoke(obj,value);
                 }
             }
 

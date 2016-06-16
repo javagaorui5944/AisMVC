@@ -12,5 +12,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MapURL {
     String value();
-    String method() default "GET";
+    String method() default "get";
 }

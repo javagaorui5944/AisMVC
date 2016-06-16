@@ -10,16 +10,16 @@ import org.aisframework.web.annotation.MapURL;
 public class test {
 
     @MapURL("get")
-    public void get(){
+    public void get(String xxx){
 
-        System.out.print("get");
+        System.out.println("pram:"+xxx);
 
     }
 
     @MapURL("post")
-    public void post(){
+    public void post(int id){
 
-        System.out.print("post");
+        System.out.println("post");
 
     }
 }
