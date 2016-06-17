@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class ReflectProcessor {
 
-    public static void parseMethod(final Class<?> clazz,String methodname,String[] value) throws Exception {
+    public static void parseMethod(final Class<?> clazz,String methodname,Object[] value) throws Exception {
         final Object obj = clazz.getConstructor(new Class[] {}).newInstance(new Object[] {});
         final Method[] methods = clazz.getDeclaredMethods();
         for (final Method method : methods) {

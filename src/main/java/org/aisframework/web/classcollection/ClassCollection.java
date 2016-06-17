@@ -41,6 +41,7 @@ public class ClassCollection {
                         MapURL mapURL=method.getAnnotation(MapURL.class);
                         MethodPro mp=new MethodPro(method,mapURL.value(),mapURL.method());
                         methodMap.put(mapURL.value(),mp);
+                        System.out.print(mapURL.value()+":mapURL.value()");
                         classMap.put(mapURL.value(),clazz);
                     }
                 }

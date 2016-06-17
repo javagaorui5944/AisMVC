@@ -96,7 +96,10 @@ public class asmutil {
 
 public static void  main(String args[]){
     try {
-        //ReflectProcessor.parseMethod(test.class,"get","111");
+        String s1 = "/get.do";
+        String[] s2 = (s1.replaceAll("/","")).split("\\.");
+        System.out.println(s2[0]);
+        //ReflectProcessor.parseMethod(test.class,"get",new Object[]{"111","222",1,1});
     } catch (Exception e) {
         e.printStackTrace();
     }

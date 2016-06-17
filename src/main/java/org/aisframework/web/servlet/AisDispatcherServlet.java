@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 import org.aisframework.web.test.asmutil;
 import  org.aisframework.web.test.test;
+import org.aisframework.web.utils.CollectionUtils;
 import org.aisframework.web.utils.ReflectProcessor;
 
 
@@ -24,9 +26,7 @@ public class AisDispatcherServlet extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig servletConfig) throws ServletException {
-		long start=System.currentTimeMillis();
 		ClassCollection.scanClassSetByPackage("org.aisframework.web.test");
-		System.out.println("class initalized in " + (System.currentTimeMillis() - start) + " ms");
 
 	}
 
@@ -42,34 +42,18 @@ public class AisDispatcherServlet extends HttpServlet {
 		while(it.hasNext()){
 			Map.Entry entry = (Map.Entry)it.next();
 			String key= entry.getKey().toString();
-			MethodPro value= (MethodPro)entry.getValue();
 			if(("/"+key+".do").equals(pathInfo)){
 				try {
 
-//					String[] s = asmutil.getMethodParamNames(test.class.getDeclaredMethod("get",String.class)
-//
+
 					List<String> paramlist = MethodResolver.getMethodNames("org.aisframework.web.test.test",key);
 					Map params  = req.getParameterMap();
 
-					Iterator it1 = params.keySet().iterator();
-					String paramValue = "";
-					String[] invokeParamVulue = new String[paramlist.size()];//初始化数组参数,传入反射方法,注入参数值
+					MethodPro methodPro = methodProMap.get((pathInfo.replaceAll("/","")).split("\\.")[0]);
+					Method method=methodPro.getMethod();
+					List<String> classNames= CollectionUtils.classArrToStringList(method.getParameterTypes());
+					Object[] invokeParamVulue = MethodResolver.paramarray(paramlist,classNames,req,resp,null,params);
 
-					while(it1.hasNext()){
-						String paramName =(String)it1.next();
-						paramValue = req.getParameter(paramName);
-						for(int i=0 ;i<paramlist.size();i++){
-							if(paramlist.get(i).toString().equals(paramName)){
-								invokeParamVulue[i] = paramValue;
-							}
-							else{
-
-							}
-						}
-						//处理你得到的参数名与值
-						System.out.println(paramName+"="+paramValue);
-					}
-					//System.out.println(Arrays.toString(s));
 
 					ReflectProcessor.parseMethod(test.class,key,invokeParamVulue);
 				} catch (Exception e) {
