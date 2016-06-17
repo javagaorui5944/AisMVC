@@ -10,9 +10,9 @@ import org.aisframework.web.annotation.MapURL;
 public class test {
 
     @MapURL("get")
-    public void get(String xxx){
+    public void get(String xxx,String xxx1){
 
-        System.out.println("pram:"+xxx);
+        System.out.println("pram:"+xxx+"==="+xxx1);
 
     }
 

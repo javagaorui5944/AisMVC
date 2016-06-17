@@ -1,5 +1,6 @@
 package org.aisframework.web.test;
 
+import org.aisframework.web.utils.ReflectProcessor;
 import org.objectweb.asm.*;
 
 import java.io.FileInputStream;
@@ -94,14 +95,12 @@ public class asmutil {
     }
 
 public static void  main(String args[]){
-    String[] s = new String[0];
     try {
-        s = asmutil.getMethodParamNames(test.class.getDeclaredMethod("get")
-        );
-    } catch (NoSuchMethodException e) {
+        //ReflectProcessor.parseMethod(test.class,"get","111");
+    } catch (Exception e) {
         e.printStackTrace();
     }
-    System.out.println(Arrays.toString(s));
+
 }
 
 }

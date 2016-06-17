@@ -1,6 +1,7 @@
 package org.aisframework.web.servlet;
 
 import org.aisframework.web.classcollection.ClassCollection;
+import org.aisframework.web.param.MethodResolver;
 import org.aisframework.web.structure.MethodPro;
 
 import javax.servlet.ServletConfig;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.aisframework.web.test.asmutil;
@@ -46,20 +48,30 @@ public class AisDispatcherServlet extends HttpServlet {
 
 //					String[] s = asmutil.getMethodParamNames(test.class.getDeclaredMethod("get",String.class)
 //
-
+					List<String> paramlist = MethodResolver.getMethodNames("org.aisframework.web.test.test",key);
 					Map params  = req.getParameterMap();
 
 					Iterator it1 = params.keySet().iterator();
-					String paramValue ="";
+					String paramValue = "";
+					String[] invokeParamVulue = new String[paramlist.size()];//初始化数组参数,传入反射方法,注入参数值
+
 					while(it1.hasNext()){
 						String paramName =(String)it1.next();
-						 paramValue = req.getParameter(paramName);
+						paramValue = req.getParameter(paramName);
+						for(int i=0 ;i<paramlist.size();i++){
+							if(paramlist.get(i).toString().equals(paramName)){
+								invokeParamVulue[i] = paramValue;
+							}
+							else{
+
+							}
+						}
 						//处理你得到的参数名与值
 						System.out.println(paramName+"="+paramValue);
 					}
 					//System.out.println(Arrays.toString(s));
 
-					ReflectProcessor.parseMethod(test.class,key,paramValue);
+					ReflectProcessor.parseMethod(test.class,key,invokeParamVulue);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
