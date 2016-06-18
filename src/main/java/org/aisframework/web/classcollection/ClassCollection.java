@@ -4,6 +4,7 @@ package org.aisframework.web.classcollection;
 
 import org.aisframework.web.annotation.Controller;
 import org.aisframework.web.annotation.MapURL;
+import org.aisframework.web.annotation.ResponseBody;
 import org.aisframework.web.structure.MethodPro;
 import org.aisframework.web.utils.Config;
 import org.aisframework.web.utils.FileUtils;
@@ -39,11 +40,17 @@ public class ClassCollection {
                     if(method.isAnnotationPresent(MapURL.class))
                     {
                         MapURL mapURL=method.getAnnotation(MapURL.class);
-                        MethodPro mp=new MethodPro(method,mapURL.value(),mapURL.method());
+                        boolean b = false;
+                        if(method.isAnnotationPresent(ResponseBody.class)){
+                           b = true;
+                        }
+                        MethodPro mp=new MethodPro(method,mapURL.value(),mapURL.method(),b);
+
                         methodMap.put(mapURL.value(),mp);
-                        System.out.print(mapURL.value()+":mapURL.value()");
                         classMap.put(mapURL.value(),clazz);
+
                     }
+
                 }
             }
         }

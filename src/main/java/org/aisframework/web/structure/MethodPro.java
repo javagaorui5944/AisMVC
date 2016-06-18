@@ -10,11 +10,14 @@ public class MethodPro {
     private String url;
     private String urlStyle;
     private Method method;
+    private Boolean isAjax;
 
-    public MethodPro(Method method, String url, String urlStyle) {
+    public MethodPro(Method method, String url, String urlStyle,boolean isAjax) {
         this.method = method;
         this.url = url;
         this.urlStyle = urlStyle;
+        this.isAjax = isAjax;
+
         this.name=method.getName();
     }
 
@@ -56,4 +59,11 @@ public class MethodPro {
     }
 
 
+    public Boolean getAjax() {
+        return isAjax;
+    }
+
+    public void setAjax(Boolean ajax) {
+        isAjax = ajax;
+    }
 }

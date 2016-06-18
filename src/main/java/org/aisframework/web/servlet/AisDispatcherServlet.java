@@ -11,12 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-import org.aisframework.web.test.asmutil;
 import  org.aisframework.web.test.test;
 import org.aisframework.web.utils.CollectionUtils;
 import org.aisframework.web.utils.ReflectProcessor;
@@ -44,7 +41,19 @@ public class AisDispatcherServlet extends HttpServlet {
 			String key= entry.getKey().toString();
 			if(("/"+key+".do").equals(pathInfo)){
 				try {
+					Method method1 = methodProMap.get(key).getMethod();
+					if(method1.getReturnType().getName().equals("java.lang.String")){
+						String uri = ReflectProcessor.parseMethod(test.class,key,null).toString();
 
+						req.getRequestDispatcher("WEB-INF/"+uri+".html").forward(req,resp);
+						return;
+					}
+					else if(methodProMap.get(key).getAjax()){
+						Object o = ReflectProcessor.parseMethod(test.class,key,null);
+
+						resp.getWriter().print(o);
+						return;
+					}
 
 					List<String> paramlist = MethodResolver.getMethodNames("org.aisframework.web.test.test",key);
 					Map params  = req.getParameterMap();

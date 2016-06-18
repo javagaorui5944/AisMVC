@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajaxtest</title>
+</head>
+<script>
+function a() {
+
+
+    var postData = {};
+
+    postData = (function(obj){ // 转成post需要的字符串.
+        var str = "";
+
+        for(var prop in obj){
+            str += prop + "=" + obj[prop] + "&"
+        }
+        return str;
+    })(postData);
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "post.do", true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function(){
+        var XMLHttpReq = xhr;
+        if (XMLHttpReq.readyState == 4) {
+            if (XMLHttpReq.status == 200) {
+                var text = XMLHttpReq.responseText;
+
+                console.log(text);
+            }
+        }
+    };
+    xhr.send(postData);
+}
+</script>
+<body>
+<button onclick="a()" value="b"></button>
+
+</body>
+</html>
