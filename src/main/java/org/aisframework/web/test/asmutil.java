@@ -1,13 +1,11 @@
 package org.aisframework.web.test;
 
-import org.aisframework.web.utils.ReflectProcessor;
 import org.objectweb.asm.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.Arrays;
+
 
 /**
  * Created by gaorui on 16/6/15.
@@ -93,7 +91,6 @@ public class asmutil {
         }, 0);
         return paramNames;
     }
-
 public static void  main(String args[]){
     try {
         String s1 = "/get.do";

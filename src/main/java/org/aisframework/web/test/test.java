@@ -1,13 +1,9 @@
 package org.aisframework.web.test;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import javafx.beans.binding.ObjectExpression;
 import org.aisframework.web.annotation.Controller;
 import org.aisframework.web.annotation.MapURL;
 import org.aisframework.web.annotation.ResponseBody;
-
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -62,9 +58,9 @@ public class test {
 
     @MapURL("getUser")
     @ResponseBody
-    public Object getUser(){
+    public Object getUser(String userid){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("userid",1);
+        jsonObject.put("userid",userid);
         return jsonObject;
 
     }
