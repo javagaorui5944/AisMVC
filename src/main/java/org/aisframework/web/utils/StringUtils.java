@@ -3,7 +3,7 @@ package org.aisframework.web.utils;
 import java.io.File;
 
 /**
- * Created by lenovo on 2016/5/16.
+ * Created by gaorui on 2016/5/16.
  */
 public class StringUtils {
     public static String modifyPackagePath(String packageName)

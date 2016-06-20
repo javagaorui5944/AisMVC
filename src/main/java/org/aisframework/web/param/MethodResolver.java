@@ -18,12 +18,6 @@ import java.util.Map.Entry;
 public class MethodResolver {
 
 
-//        public static void main(String[] args) throws IOException {
-//            String ss="cn.asens.test.sad.Sa";
-//            ss="/D:/IDEA/AsMVC/target/AsMVC-1.0-SNAPSHOT/WEB-INF/classes/"+ss.replace(".","/");
-//            InputStream is=new FileInputStream(new File(ss+".class"));
-//            ClassReader cr = new ClassReader(is);
-//        }
 
         public static List<String> getMethodNames(String className,String methodName) throws IOException {
             List<String> list=new ArrayList<String>();
@@ -52,7 +46,6 @@ public class MethodResolver {
         for(int i=0,length=paraNames.size();i<length;i++)
         {
             String className=classNames.get(i);
-            System.out.println(className+"===className");
 
             if(className.equals("javax.servlet.http.HttpServletRequest"))
                 list.add(req);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by lenovo on 2016/5/20.
+ * Created by gaorui on 2016/5/20.
  */
 public class CollectionUtils {
     public static <T> List<T> arrayToList(T[] arr)

@@ -25,11 +25,9 @@ public class ReflectProcessor {
         for (final Method method : methods) {
             if(method.getName().equals(methodname)){
                 final MapURL my = method.getAnnotation(MapURL.class);
-                Class<?>[] parameterTypes = method.getParameterTypes();
-                //JSON.parse();
+               // Class<?>[] parameterTypes = method.getParameterTypes();
                 if (null != my) {
-                                      //Map<String,String > map = new HashMap<String, String>();
-                   // map.put("xxx",value);
+
                     o = method.invoke(obj,value);
                 }
             }

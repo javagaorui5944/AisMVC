@@ -15,9 +15,12 @@ import java.util.Map;
  * Created by gaorui on 16/6/19.
  */
 public class HandlerMapping {
+
     public static void  HandlerMapping(HttpServletRequest req,HttpServletResponse resp, Map<String,MethodPro> methodProMap, String key) {
+
         try {
-        List<String> paramlist = MethodResolver.getMethodNames("org.aisframework.web.test.test", key);
+
+        List<String> paramlist = MethodResolver.getMethodNames(methodProMap.get(key).getMethod().getDeclaringClass().getName(), key);
         Map params = req.getParameterMap();
         MethodPro methodPro = methodProMap.get(key);
         Method method = methodPro.getMethod();
