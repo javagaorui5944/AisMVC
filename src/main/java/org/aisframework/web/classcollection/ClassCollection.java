@@ -44,7 +44,7 @@ public class ClassCollection {
                         if(method.isAnnotationPresent(ResponseBody.class)){
                            b = true;
                         }
-                        MethodPro mp=new MethodPro(method,mapURL.value(),mapURL.method(),b);
+                        MethodPro mp=new MethodPro(method,mapURL.value(),mapURL.RequestMethod(),b);
 
                         methodMap.put(mapURL.value(),mp);
                         classMap.put(mapURL.value(),clazz);

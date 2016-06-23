@@ -7,6 +7,7 @@ import org.aisframework.web.utils.ReflectProcessor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +28,15 @@ public class HandlerMapping {
         List<String> classNames = CollectionUtils.classArrToStringList(method.getParameterTypes());
         Object[] invokeParamVulue = MethodResolver.paramarray(paramlist, classNames, req, resp, null, params);;
         Method urlmethod = methodProMap.get(key).getMethod();
+
+            String reqtype = req.getMethod().toUpperCase();
+
+                if(methodPro.getUrlStyle().equals("POST")){
+                    if(!reqtype.equals("POST")) {
+                        resp.getWriter().print("405 not allowed");
+                        return;
+                    }
+            }
 
             if (urlmethod.getReturnType().getName().equals("java.lang.String")) {
 

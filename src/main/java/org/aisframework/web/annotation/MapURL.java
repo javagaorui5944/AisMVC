@@ -8,9 +8,10 @@ import java.lang.annotation.Target;
 /**
  * Created by gaorui on 2016/6/14.
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.TYPE,ElementType.METHOD,ElementType.FIELD,ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MapURL {
     String value();
-    String method() default "get";
+    String RequestMethod() default "get";
+
 }

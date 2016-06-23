@@ -18,7 +18,7 @@ import java.util.Map;
 @Controller
 public class test {
 
-    @MapURL("get")
+    @MapURL(value = "get",RequestMethod = "POST")
     public void get(String s1,String s2,HttpServletRequest request, HttpServletResponse response, HttpSession session){
 
         System.out.println("pram:"+session.getId()+"==="+s1+"=="+s2);
@@ -26,7 +26,7 @@ public class test {
 
     }
 
-    @MapURL("post")
+    @MapURL(value="post")
     public void post(HttpServletResponse response){
 
         PrintWriter pw = null;
@@ -42,21 +42,21 @@ public class test {
         pw.print(jsonObject);
     }
 
-    @MapURL("showUser")
+    @MapURL(value="showUser")
     public void showUser(String s1,String s2){
 
         System.out.println("pram:"+s1+"==="+s2);
 
     }
 
-    @MapURL("foward")
+    @MapURL(value="foward")
     public String foward(){
 
         return "page/succ";
 
     }
 
-    @MapURL("getUser")
+    @MapURL(value="getUser")
     @ResponseBody
     public Object getUser(String userid){
         JSONObject jsonObject = new JSONObject();
