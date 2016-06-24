@@ -21,10 +21,7 @@ public class MethodPro {
         this.name=method.getName();
     }
 
-    public MethodPro()
-    {
 
-    }
 
     public Method getMethod() {
         return method;

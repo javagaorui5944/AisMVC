@@ -31,19 +31,23 @@ public class HandlerMapping {
 
             String reqtype = req.getMethod().toUpperCase();
 
-                if(methodPro.getUrlStyle().equals("POST")){
+            //http请求处理
+            if(methodPro.getUrlStyle().equals("POST")){
                     if(!reqtype.equals("POST")) {
+
                         resp.getWriter().print("405 not allowed");
                         return;
                     }
             }
 
+            //String返回方法参数类型处理
             if (urlmethod.getReturnType().getName().equals("java.lang.String")) {
 
                 String uri = ReflectProcessor.parseMethod(test.class, key, invokeParamVulue).toString();
                 req.getRequestDispatcher("WEB-INF/" + uri + ".html").forward(req, resp);
                 return;
 
+            //ajax接口处理
             } else if (methodProMap.get(key).getAjax()) {
 
                 Object o = ReflectProcessor.parseMethod(test.class, key, invokeParamVulue);

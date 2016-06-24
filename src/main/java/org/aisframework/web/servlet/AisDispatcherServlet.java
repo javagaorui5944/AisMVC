@@ -1,3 +1,4 @@
+
 package org.aisframework.web.servlet;
 
 import org.aisframework.web.classcollection.ClassCollection;
@@ -24,11 +25,11 @@ public class AisDispatcherServlet extends HttpServlet {
 	public void init(ServletConfig servletConfig) throws ServletException {
 		ClassCollection.scanClassSetByPackage(Config.getAnnoClassConfig("base-package"));//初始化配置下的 @Controller类
 		methodProMap = ClassCollection.getMethodMap();//拿到封装的每个类方法的属性
-
 	}
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
 		String pathInfo=req.getServletPath();
 		String key = pathInfo.replaceAll("/", "").split("\\.")[0];
 		if (methodProMap.containsKey(key)) {
@@ -36,3 +37,4 @@ public class AisDispatcherServlet extends HttpServlet {
 		}
 	}
 }
+

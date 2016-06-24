@@ -1,4 +1,4 @@
-package org.aisframework.web.test;
+package org.aisframework.web.utils;
 
 import org.objectweb.asm.*;
 
@@ -10,7 +10,7 @@ import java.lang.reflect.Modifier;
 /**
  * Created by gaorui on 16/6/15.
  */
-public class asmutil {
+public class AsmUtils {
     /**
      *
      * <p>
@@ -91,16 +91,6 @@ public class asmutil {
         }, 0);
         return paramNames;
     }
-public static void  main(String args[]){
-    try {
-        String s1 = "/get.do";
-        String[] s2 = (s1.replaceAll("/","")).split("\\.");
-        System.out.println(s2[0]);
-        //ReflectProcessor.parseMethod(test.class,"get",new Object[]{"111","222",1,1});
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
 
-}
 
 }

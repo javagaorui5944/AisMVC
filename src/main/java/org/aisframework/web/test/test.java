@@ -1,5 +1,6 @@
 package org.aisframework.web.test;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.aisframework.web.annotation.Controller;
 import org.aisframework.web.annotation.MapURL;
@@ -56,9 +57,10 @@ public class test {
 
     }
 
-    @MapURL(value="getUser")
+    @MapURL(value = "getUser", RequestMethod = "GET")
     @ResponseBody
-    public Object getUser(String userid){
+    public JSONObject getUser(String userid){
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("userid",userid);
         return jsonObject;
