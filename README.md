@@ -1,6 +1,7 @@
 #AisMVC,一款仿SpringMVC框架的轻便快捷的Java MVC开发框架
 ####前言
 *  写这个框架的意义在于过去使用springmvc框架作为项目中的Controller层,springmvc的简洁配置和使用让我们选择了它,但这个框架我用着也发现了它也有很多冗余功能的地方。我们团队开发web项目一般采用前后端分离,所以后端的的Controller层的功能仅仅只有提供ajax接口,页面集成后的跳转,过滤器和拦截器,所以我就想着自己写一款仿springmvc的mvc框架作为自己和团队以后的开发中小型项目的框架,舍掉冗余的部分,只要项目中实际需要的功能
+
 ####框架流程图
 
 ![me](http://o9beglkd1.bkt.clouddn.com/B21B9E90-F3A9-4C2D-8BEA-A0375CE87CD8.jpg)
