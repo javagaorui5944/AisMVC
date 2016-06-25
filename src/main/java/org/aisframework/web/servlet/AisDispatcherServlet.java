@@ -1,6 +1,7 @@
 
 package org.aisframework.web.servlet;
 
+import com.alibaba.fastjson.JSONObject;
 import org.aisframework.web.classcollection.ClassCollection;
 
 import org.aisframework.web.param.HandlerMapping;
@@ -34,7 +35,11 @@ public class AisDispatcherServlet extends HttpServlet {
 		String key = pathInfo.replaceAll("/", "").split("\\.")[0];
 		if (methodProMap.containsKey(key)) {
 			HandlerMapping.HandlerMapping(req,resp,methodProMap,key);//转发到映射器进行映射处理
+			return ;
 		}
+
+		//用户请求url没有映射404处理
+			resp.sendError(404);
 	}
 }
 

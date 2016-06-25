@@ -1,5 +1,7 @@
 package org.aisframework.web.annotation;
 
+import org.aisframework.web.structure.RequestMethod;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -12,6 +14,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MapURL {
     String value();
-    String RequestMethod() default "get";
+    String RequestMethod() default "GET";
 
 }

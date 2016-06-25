@@ -38,7 +38,7 @@ public class MethodResolver {
 
 
 
-    public static Object[] paramarray(List<String> paraNames, List<String> classNames, HttpServletRequest req, HttpServletResponse resp, ModelMap model, Map params) {
+    public static Object[] paramarray(List<String> paraNames, List<String> classNames, HttpServletRequest req, HttpServletResponse resp, Map params) {
         List<Object> list=new ArrayList<Object>();
 
         String paramValue = "";

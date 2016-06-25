@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import org.aisframework.web.annotation.Controller;
 import org.aisframework.web.annotation.MapURL;
 import org.aisframework.web.annotation.ResponseBody;
+import org.aisframework.web.structure.RequestMethod;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,37 +21,28 @@ import java.util.Map;
 @Controller
 public class test {
 
-    @MapURL(value = "get",RequestMethod = "POST")
+
+    /**
+     * @author gaorui
+     * @param s1
+     * @param s2
+     * @param request
+     * @param response
+     * @param session
+     * 普通url处理
+     */
+    @MapURL(value = "get",RequestMethod = RequestMethod.GET)
     public void get(String s1,String s2,HttpServletRequest request, HttpServletResponse response, HttpSession session){
 
-        System.out.println("pram:"+session.getId()+"==="+s1+"=="+s2);
-
-
+            return;
     }
 
-    @MapURL(value="post")
-    public void post(HttpServletResponse response){
 
-        PrintWriter pw = null;
-        try {
-            pw = response.getWriter();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Map map = new HashMap();
-        map.put("userid",1);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("userid",1);
-        pw.print(jsonObject);
-    }
-
-    @MapURL(value="showUser")
-    public void showUser(String s1,String s2){
-
-        System.out.println("pram:"+s1+"==="+s2);
-
-    }
-
+    /**
+     * @author gaorui
+     * @return String
+     * 服务端跳转页面处理,默认 web-inf下所有 .html文件
+     */
     @MapURL(value="foward")
     public String foward(){
 
@@ -57,9 +50,15 @@ public class test {
 
     }
 
-    @MapURL(value = "getUser", RequestMethod = "GET")
+    /**
+     * @author gaorui
+     * @param userid
+     * @return Object
+     * 服务端处理前端ajax请求,返回json数据
+     */
+    @MapURL(value = "getUser", RequestMethod = RequestMethod.GET)
     @ResponseBody
-    public JSONObject getUser(String userid){
+    public JSONObject getUser(int userid){
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("userid",userid);
