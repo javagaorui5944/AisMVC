@@ -34,6 +34,7 @@ public class test {
     @MapURL(value = "get",RequestMethod = RequestMethod.GET)
     public void get(String s1,String s2,HttpServletRequest request, HttpServletResponse response, HttpSession session){
 
+            System.out.print(s1+""+s2);
             return;
     }
 
@@ -58,7 +59,7 @@ public class test {
      */
     @MapURL(value = "getUser", RequestMethod = RequestMethod.GET)
     @ResponseBody
-    public JSONObject getUser(int userid){
+    public JSONObject getUser(Integer userid,Integer me){
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("userid",userid);

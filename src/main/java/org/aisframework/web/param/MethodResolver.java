@@ -64,8 +64,15 @@ public class MethodResolver {
 
                     if (paraNames.get(i).toString().equals(paramName)) {
 
+                         if (className.equals("java.lang.Integer") || className.equals("int")) {
+                            list.add(Integer.valueOf(paramValue));
+                        } else if (className.equals("java.lang.Boolean") || className.equals("boolean")) {
+                            list.add(Boolean.valueOf(paramValue));
+                        }
+                         else
                         list.add(paramValue);
                     }
+
                 }
 
             }

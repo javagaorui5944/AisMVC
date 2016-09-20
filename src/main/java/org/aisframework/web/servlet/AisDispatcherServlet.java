@@ -35,7 +35,9 @@ public class AisDispatcherServlet extends HttpServlet {
 		String key = pathInfo.replaceAll("/", "").split("\\.")[0];
 		if (methodProMap.containsKey(key)) {
 			HandlerMapping.HandlerMapping(req,resp,methodProMap,key);//转发到映射器进行映射处理
+
 			return ;
+
 		}
 
 		//用户请求url没有映射404处理

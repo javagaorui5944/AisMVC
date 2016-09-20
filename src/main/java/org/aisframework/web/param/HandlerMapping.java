@@ -43,19 +43,19 @@ public class HandlerMapping {
             //String返回方法参数类型处理
             if (urlmethod.getReturnType().getName().equals("java.lang.String")) {
 
-                String uri = ReflectProcessor.parseMethod(test.class, key, invokeParamVulue).toString();
+                String uri = ReflectProcessor.parseMethod(method,test.class, key, invokeParamVulue).toString();
                 req.getRequestDispatcher("WEB-INF/" + uri + ".html").forward(req, resp);
                 return;
 
             //ajax接口处理
             } else if (methodProMap.get(key).getAjax()) {
 
-                Object o = ReflectProcessor.parseMethod(test.class, key, invokeParamVulue);
+                Object o = ReflectProcessor.parseMethod(method,test.class, key, invokeParamVulue);
                 resp.getWriter().print(o);
                 return;
             }
 
-            ReflectProcessor.parseMethod(test.class, key, invokeParamVulue);
+            ReflectProcessor.parseMethod(method,test.class, key, invokeParamVulue);
             return;
         } catch (Exception e) {
             e.printStackTrace();
